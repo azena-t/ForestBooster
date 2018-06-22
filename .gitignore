@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+.idea/
+JetBrains/
 
 # Visual Studio cache directory
 .vs/

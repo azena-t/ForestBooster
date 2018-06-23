@@ -29,7 +29,6 @@ public class Rocket : MonoBehaviour
         {
             case "Friendly": 
                 print("OK");
-                
                 break;
             default:
                 print("dead");

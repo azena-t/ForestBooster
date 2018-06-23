@@ -22,12 +22,26 @@ public class Rocket : MonoBehaviour
 
     private void ProcessInput()
     {
+        HandleThrusting();
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.forward);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(-Vector3.forward);
+        }
+    }
+
+    private void HandleThrusting()
+    {
         if (Input.GetKey(KeyCode.Space))
         {
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
+
             rigidbody.AddRelativeForce(Vector3.up);
         }
         else
@@ -36,15 +50,6 @@ public class Rocket : MonoBehaviour
             {
                 audioSource.Stop();
             }
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(-Vector3.forward);
         }
     }
 }

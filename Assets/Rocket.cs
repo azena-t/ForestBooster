@@ -15,6 +15,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem mainEngineParticleSystem;
     [SerializeField] ParticleSystem successParticleSystem;
     [SerializeField] ParticleSystem deathParticleSystem;
+    [SerializeField] float levelLoadDelay = 2f;
 
     enum State
     {
@@ -68,7 +69,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         deathParticleSystem.Play();
         audioSource.PlayOneShot(deathAudioClip);
-        Invoke("ResetGame", 1f);
+        Invoke("ResetGame", levelLoadDelay);
     }
 
     private void LoadNextLevel()
@@ -77,7 +78,7 @@ public class Rocket : MonoBehaviour
         successParticleSystem.Play();
         audioSource.PlayOneShot(successAudioClip);
         state = State.TRANSCENDING;
-        Invoke("LoadNextScene", 1f);
+        Invoke("LoadNextScene", levelLoadDelay);
     }
 
     private void ResetGame()

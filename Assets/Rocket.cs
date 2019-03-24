@@ -16,6 +16,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticleSystem;
     [SerializeField] ParticleSystem deathParticleSystem;
     [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] bool collisions = true;
 
     enum State
     {
@@ -36,10 +37,23 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug();
         if (state == State.ALIVE)
         {
             Thrust();
             Rotate();
+        }
+    }
+
+    private void Debug()
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            collisions = false;
+        }
+        if (Input.GetKey(KeyCode.L))
+        {
+            LoadNextScene();
         }
     }
 
@@ -58,7 +72,7 @@ public class Rocket : MonoBehaviour
                 LoadNextLevel();
                 break;
             default:
-                Die();
+                if(collisions) Die();
                 break;
         }
     }
